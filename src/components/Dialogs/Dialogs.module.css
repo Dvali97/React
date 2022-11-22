@@ -1,0 +1,68 @@
+.dialogs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.dialogsItems {
+  background-color: aqua;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dialogsItems .active {
+  color: gold;
+}
+
+.dialog {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  font-weight: bold;
+  color: aqua;
+}
+
+
+.maxinji {
+  color: white;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background-color: gold;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: antiquewhite;
+  font-weight: bold;
+}
+
+.person {
+  margin-top: 10px;
+}
+
+.friends_box {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.mode {
+  font-size: 10px;
+}
+
+.person {
+  margin-left: 5px;
+}

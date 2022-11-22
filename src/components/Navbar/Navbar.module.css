@@ -1,0 +1,17 @@
+.nav {
+    grid-area: n;
+    background-color: saddlebrown;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;  
+  }
+
+  .item a {
+    color: white;
+    text-decoration: none;
+    font-size: 2em;
+  }
+
+a.activeLink {
+  color: gold;
+}
