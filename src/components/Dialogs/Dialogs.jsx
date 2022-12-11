@@ -1,40 +1,52 @@
 import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
 import Message from "./Message/Message";
-import { useRef } from "react";
+import { sendMessageCreator, updateNewMessageBodyCreator } from "../../redux/dialogs-reducer";
+import { updateMessageText } from './../../redux/dialogs-reducer';
 
 const Dialogs = (props) => {
-  let dialogsElements = props.state.dialogs.map((d) => (
+
+  let state = props.store.getState().dialogsPage;
+
+  let dialogsElements = state.dialogs.map((d) => (
     <DialogItem name={d.name} id={d.id} />
   ));
 
-  let messagesElements = props.state.messages.map((m) => (
+  let messagesElements = state.messages.map((m) => (
     <Message message={m.message} />
   ));
 
-    let newName = useRef();
+  // let newMessageBody = state.newMessageBody;
 
-  let addPerson = () => {
-    props.addPerson();
+  let onSendMessageClick = () => {
+    props.dispatch(sendMessageCreator());
   }
 
-  let onPersonChange = () => {
-    let name = newName.current.value;
-    props.updatePerson(name);
+  let onNewMessageChange = (e) => {
+    let body = e.target.value;
+    props.dispatch(updateMessageText(body));
   }
+
+
 
   return (
     <div className={s.dialogs}>
       <div className={s.DialogsItems}>
+        Message
         {dialogsElements}
+      </div>
+      <div className={s.Messages}>
         <div>
-          <input onChange={onPersonChange} ref={newName} value={props.newMessage}/>
+          {messagesElements}
         </div>
         <div>
-          <button onClick={addPerson}>Button</button>
+          <div><textarea 
+          // value={newMessageBody}
+            placeholder="Enter your message"
+            onChange={onNewMessageChange}></textarea></div>
+          <div><button onClick={onSendMessageClick}>Send</button></div>
         </div>
       </div>
-      <div className={s.Messages}>{messagesElements}</div>
     </div>
   );
 };

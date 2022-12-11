@@ -66,3 +66,9 @@ a {
 .person {
   margin-left: 5px;
 }
+
+button {
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}

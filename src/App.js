@@ -10,48 +10,49 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 const App = (props) => {
-  return (
-      <div className="app-wrapper">
-        <Header />
-        <Navbar friends={props.state.dialogsPage.dialogs} />
 
-        <div className="app-wrapper-content">
-          <Routes>
-            <Route
-              path="/profile"
-              element={
-                <Profile
-                  updateNewPostText={props.updateNewPostText}
-                  profilePage={props.state.profilePage}
-                  addPost={props.addPost}
-                />
-              }
-            />
-            <Route
-              exact
-              path="/dialogs"
-              element={
-                <Dialogs
-                  state={props.state.dialogsPage}
-                  addPerson={props.addPerson}
-                  updatePerson={props.updatePerson}
-                  newMessage={props.state.dialogsPage.newMessage}
-                />
-              }
-            />
-            <Route path="/news" element={<News news={props.state.news} />} />
-            <Route
-              path="/music"
-              element={
-                <Music
-                  newArtist={props.state.musicPage.newArtist}
-                />
-              }
-            />
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </div>
+  return (
+    <div className="app-wrapper">
+      <Header />
+      <Navbar friends={props.state.dialogsPage.dialogs} />
+
+      <div className="app-wrapper-content">
+        <Routes>
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                profilePage={props.state.profilePage}
+                dispatch={props.dispatch}
+                store={props.store}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/dialogs"
+            element={
+              <Dialogs
+                store={props.store}
+                dispatch={props.dispatch}
+              />
+            }
+          />
+          <Route path="/news" element={<News
+            dispatch={props.dispatch}
+            store={props.store}
+            news={props.state.news.new}
+          />} />
+          <Route
+            path="/music"
+            element={
+              <Music />
+            }
+          />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
       </div>
+    </div>
   );
 };
 
