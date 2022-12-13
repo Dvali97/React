@@ -6,7 +6,7 @@ import { updateMessageText } from './../../redux/dialogs-reducer';
 
 const Dialogs = (props) => {
 
-  let state = props.store.getState().dialogsPage;
+  let state = props.dialogsPage;
 
   let dialogsElements = state.dialogs.map((d) => (
     <DialogItem name={d.name} id={d.id} />
@@ -16,15 +16,16 @@ const Dialogs = (props) => {
     <Message message={m.message} />
   ));
 
-  // let newMessageBody = state.newMessageBody;
+  let newMessageBody = state.newMessageBody;
 
   let onSendMessageClick = () => {
-    props.dispatch(sendMessageCreator());
+    props.sendMessage();
+    // props.dispatch(sendMessageCreator());
   }
 
   let onNewMessageChange = (e) => {
     let body = e.target.value;
-    props.dispatch(updateMessageText(body));
+    props.updateNewMessageBody(body);
   }
 
 
@@ -40,8 +41,8 @@ const Dialogs = (props) => {
           {messagesElements}
         </div>
         <div>
-          <div><textarea 
-          // value={newMessageBody}
+          <div><textarea
+            value={newMessageBody}
             placeholder="Enter your message"
             onChange={onNewMessageChange}></textarea></div>
           <div><button onClick={onSendMessageClick}>Send</button></div>
